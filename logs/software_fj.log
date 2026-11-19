@@ -1,0 +1,95 @@
+2026-11-19 11:18:35 | INFO     | ========== Inicio de sesión del sistema Software FJ ==========
+2026-11-19 11:18:35 | INFO     | Cliente registrado: CLI-001 - Laura Martínez
+2026-11-19 11:18:35 | INFO     | Cliente registrado: CLI-002 - Carlos Peña
+2026-11-19 11:18:35 | ERROR    | Registro de cliente | ClienteInvalidoError: [FJ-110] Correo 'andres.ruiz@' inválido.
+2026-11-19 11:18:35 | ERROR    | Registro de cliente | ParametroFaltanteError: [FJ-101] El campo 'nombre' del cliente es obligatorio.
+2026-11-19 11:18:35 | ERROR    | Registro de cliente | ClienteInvalidoError: [FJ-110] Teléfono '5771234' inválido: debe ser un celular de 10 dígitos que empiece por 3.
+2026-11-19 11:18:35 | ERROR    | Registro de cliente | ClienteInvalidoError: [FJ-110] Ya existe un cliente registrado con el documento '1090456789'.
+2026-11-19 11:18:35 | INFO     | Servicio creado: SAL-001 - Sala de juntas Norte
+2026-11-19 11:18:35 | INFO     | Servicio creado: EQU-001 - Portátiles Lenovo
+2026-11-19 11:18:35 | INFO     | Servicio creado: ASE-001 - Asesoría en ciberseguridad
+2026-11-19 11:18:35 | ERROR    | Creación de servicio | ServicioInvalidoError: [FJ-120] La tarifa debe ser mayor que cero y llegó -5000.
+2026-11-19 11:18:35 | ERROR    | Creación de servicio | ServicioInvalidoError: [FJ-120] El tipo de servicio 'catering' no existe. Opciones: sala, equipo, asesoria.
+2026-11-19 11:18:35 | ERROR    | Creación de servicio | ParametroFaltanteError: [FJ-101] Datos incompletos para crear un servicio de tipo 'asesoria'. <- causado por TypeError: Asesoria.__init__() missing 1 required positional argument: 'especialidad'
+2026-11-19 11:18:35 | ERROR    | Creación de servicio | ServicioInvalidoError: [FJ-120] Nivel 'master' no válido. Opciones: basico, intermedio, experto.
+2026-11-19 11:18:35 | INFO     | Cotización de ASE-001 con int: $535.500
+2026-11-19 11:18:35 | INFO     | Cotización de SAL-001 con dict: $651.168
+2026-11-19 11:18:35 | ERROR    | Cotización | DatoInvalidoError: [FJ-102] No se puede cotizar con un dato de tipo str.
+2026-11-19 11:18:35 | INFO     | Reserva creada: RES-001 - Laura Martínez -> Sala de juntas Norte
+2026-11-19 11:18:35 | INFO     | Reserva confirmada: RES-001 (costo base $320.000)
+2026-11-19 11:18:35 | DEBUG    | Inicio de procesamiento de RES-001
+2026-11-19 11:18:35 | INFO     | Reserva procesada: RES-001 - total $342.720
+2026-11-19 11:18:35 | DEBUG    | Fin de procesamiento de RES-001
+2026-11-19 11:18:35 | ERROR    | Creación de reserva | ReservaError: [FJ-300] No se pudo crear la reserva de 'Sala de juntas Norte' para Carlos Peña. <- causado por DatoInvalidoError: [FJ-102] 'asistentes' debe estar entre 1 y 12 y llegó 30.
+2026-11-19 11:18:35 | ERROR    | Creación de reserva | EntidadNoEncontradaError: [FJ-500] No existe un cliente con documento '123456'.
+2026-11-19 11:18:35 | INFO     | Reserva creada: RES-002 - Carlos Peña -> Portátiles Lenovo
+2026-11-19 11:18:35 | WARNING  | Servicio EQU-001 deshabilitado
+2026-11-19 11:18:35 | ERROR    | Confirmación de reserva | ReservaError: [FJ-300] No se pudo confirmar la reserva RES-002. <- causado por ServicioNoDisponibleError: [FJ-200] El servicio EQU-001 'Portátiles Lenovo' no está disponible en este momento.
+2026-11-19 11:18:35 | ERROR    | Creación de reserva | ServicioNoDisponibleError: [FJ-200] El servicio EQU-001 'Portátiles Lenovo' no está disponible en este momento.
+2026-11-19 11:18:35 | WARNING  | Servicio EQU-001 habilitado
+2026-11-19 11:18:35 | INFO     | Reserva confirmada: RES-002 (costo base $283.500)
+2026-11-19 11:18:35 | DEBUG    | Inicio de procesamiento de RES-002
+2026-11-19 11:18:35 | ERROR    | Procesamiento de reserva | ReservaError: [FJ-300] No se pudo procesar el cobro de la reserva RES-002. <- causado por CalculoInconsistenteError: [FJ-400] El descuento debe estar entre 0 y 1 (0 % a 100 %) y llegó 1.5.
+2026-11-19 11:18:35 | DEBUG    | Fin de procesamiento de RES-002
+2026-11-19 11:18:35 | INFO     | Reserva cancelada: RES-002. Motivo: El cliente aplazó el evento
+2026-11-19 11:18:35 | ERROR    | Cancelación de reserva | OperacionNoPermitidaError: [FJ-310] La reserva RES-001 ya está procesada y no se puede cancelar.
+2026-11-19 11:18:35 | INFO     | Reserva creada: RES-003 - Laura Martínez -> Asesoría en ciberseguridad
+2026-11-19 11:18:35 | DEBUG    | Inicio de procesamiento de RES-003
+2026-11-19 11:18:35 | ERROR    | Procesamiento de reserva | OperacionNoPermitidaError: [FJ-310] La reserva RES-003 está pendiente; solo se procesan reservas confirmadas.
+2026-11-19 11:18:35 | DEBUG    | Fin de procesamiento de RES-003
+2026-11-19 11:18:35 | CRITICAL | Operación 32 - error inesperado: TypeError("SistemaSoftwareFJ.crear_reserva() missing 2 required positional arguments: 'codigo_servicio' and 'duracion'")
+Traceback (most recent call last):
+  File "/home/claude/software_fj/main.py", line 19, in ejecutar_operacion
+    return accion()  # Ejecuta la operación (una función lambda)
+  File "/home/claude/software_fj/main.py", line 103, in <lambda>
+    lambda: sistema.crear_reserva("1090456789")),
+            ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+TypeError: SistemaSoftwareFJ.crear_reserva() missing 2 required positional arguments: 'codigo_servicio' and 'duracion'
+2026-11-19 11:18:35 | INFO     | Resumen generado - facturado $342.720
+2026-11-19 11:28:34 | INFO     | ========== Inicio de sesión del sistema Software FJ ==========
+2026-11-19 11:28:34 | INFO     | Cliente registrado: CLI-001 - Laura Martínez
+2026-11-19 11:28:34 | INFO     | Cliente registrado: CLI-002 - Carlos Peña
+2026-11-19 11:28:34 | ERROR    | Registro de cliente | ClienteInvalidoError: [FJ-110] Correo 'andres.ruiz@' inválido.
+2026-11-19 11:28:34 | ERROR    | Registro de cliente | ParametroFaltanteError: [FJ-101] El campo 'nombre' del cliente es obligatorio.
+2026-11-19 11:28:34 | ERROR    | Registro de cliente | ClienteInvalidoError: [FJ-110] Teléfono '5771234' inválido: debe ser un celular de 10 dígitos que empiece por 3.
+2026-11-19 11:28:34 | ERROR    | Registro de cliente | ClienteInvalidoError: [FJ-110] Ya existe un cliente registrado con el documento '1090456789'.
+2026-11-19 11:28:34 | INFO     | Servicio creado: SAL-001 - Sala de juntas Norte
+2026-11-19 11:28:34 | INFO     | Servicio creado: EQU-001 - Portátiles Lenovo
+2026-11-19 11:28:34 | INFO     | Servicio creado: ASE-001 - Asesoría en ciberseguridad
+2026-11-19 11:28:34 | ERROR    | Creación de servicio | ServicioInvalidoError: [FJ-120] La tarifa debe ser mayor que cero y llegó -5000.
+2026-11-19 11:28:34 | ERROR    | Creación de servicio | ServicioInvalidoError: [FJ-120] El tipo de servicio 'catering' no existe. Opciones: sala, equipo, asesoria.
+2026-11-19 11:28:34 | ERROR    | Creación de servicio | ParametroFaltanteError: [FJ-101] Datos incompletos para crear un servicio de tipo 'asesoria'. <- causado por TypeError: __init__() missing 1 required positional argument: 'especialidad'
+2026-11-19 11:28:34 | ERROR    | Creación de servicio | ServicioInvalidoError: [FJ-120] Nivel 'master' no válido. Opciones: basico, intermedio, experto.
+2026-11-19 11:28:34 | INFO     | Cotización de ASE-001 con int: $535.500
+2026-11-19 11:28:34 | INFO     | Cotización de SAL-001 con dict: $651.168
+2026-11-19 11:28:34 | ERROR    | Cotización | DatoInvalidoError: [FJ-102] No se puede cotizar con un dato de tipo str.
+2026-11-19 11:28:34 | INFO     | Reserva creada: RES-001 - Laura Martínez -> Sala de juntas Norte
+2026-11-19 11:28:34 | INFO     | Reserva confirmada: RES-001 (costo base $320.000)
+2026-11-19 11:28:34 | DEBUG    | Inicio de procesamiento de RES-001
+2026-11-19 11:28:34 | INFO     | Reserva procesada: RES-001 - total $342.720
+2026-11-19 11:28:34 | DEBUG    | Fin de procesamiento de RES-001
+2026-11-19 11:28:34 | ERROR    | Creación de reserva | ReservaError: [FJ-300] No se pudo crear la reserva de 'Sala de juntas Norte' para Carlos Peña. <- causado por DatoInvalidoError: [FJ-102] 'asistentes' debe estar entre 1 y 12 y llegó 30.
+2026-11-19 11:28:34 | ERROR    | Creación de reserva | EntidadNoEncontradaError: [FJ-500] No existe un cliente con documento '123456'.
+2026-11-19 11:28:34 | INFO     | Reserva creada: RES-002 - Carlos Peña -> Portátiles Lenovo
+2026-11-19 11:28:34 | WARNING  | Servicio EQU-001 deshabilitado
+2026-11-19 11:28:34 | ERROR    | Confirmación de reserva | ReservaError: [FJ-300] No se pudo confirmar la reserva RES-002. <- causado por ServicioNoDisponibleError: [FJ-200] El servicio EQU-001 'Portátiles Lenovo' no está disponible en este momento.
+2026-11-19 11:28:34 | ERROR    | Creación de reserva | ServicioNoDisponibleError: [FJ-200] El servicio EQU-001 'Portátiles Lenovo' no está disponible en este momento.
+2026-11-19 11:28:34 | WARNING  | Servicio EQU-001 habilitado
+2026-11-19 11:28:34 | INFO     | Reserva confirmada: RES-002 (costo base $283.500)
+2026-11-19 11:28:34 | DEBUG    | Inicio de procesamiento de RES-002
+2026-11-19 11:28:34 | ERROR    | Procesamiento de reserva | ReservaError: [FJ-300] No se pudo procesar el cobro de la reserva RES-002. <- causado por CalculoInconsistenteError: [FJ-400] El descuento debe estar entre 0 y 1 (0 % a 100 %) y llegó 1.5.
+2026-11-19 11:28:34 | DEBUG    | Fin de procesamiento de RES-002
+2026-11-19 11:28:34 | INFO     | Reserva cancelada: RES-002. Motivo: El cliente aplazó el evento
+2026-11-19 11:28:34 | ERROR    | Cancelación de reserva | OperacionNoPermitidaError: [FJ-310] La reserva RES-001 ya está procesada y no se puede cancelar.
+2026-11-19 11:28:34 | INFO     | Reserva creada: RES-003 - Laura Martínez -> Asesoría en ciberseguridad
+2026-11-19 11:28:34 | DEBUG    | Inicio de procesamiento de RES-003
+2026-11-19 11:28:34 | ERROR    | Procesamiento de reserva | OperacionNoPermitidaError: [FJ-310] La reserva RES-003 está pendiente; solo se procesan reservas confirmadas.
+2026-11-19 11:28:34 | DEBUG    | Fin de procesamiento de RES-003
+2026-11-19 11:28:34 | CRITICAL | Operación 32 - error inesperado: TypeError("crear_reserva() missing 2 required positional arguments: 'codigo_servicio' and 'duracion'")
+Traceback (most recent call last):
+  File "main.py", line 19, in ejecutar_operacion
+    return accion()  # Ejecuta la operación (una función lambda)
+  File "main.py", line 103, in <lambda>
+    lambda: sistema.crear_reserva("1090456789")),
+TypeError: crear_reserva() missing 2 required positional arguments: 'codigo_servicio' and 'duracion'
+2026-11-19 11:28:34 | INFO     | Resumen generado - facturado $342.720
